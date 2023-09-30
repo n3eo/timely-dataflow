@@ -106,7 +106,7 @@ where
         let activator = scope.activator_for(&info.address[..]);
         let mut cap = Some(capability);
 
-        let batch_size = 512;
+        let batch_size = 256;
 
         // define a closure to call repeatedly.
         move |output| {
