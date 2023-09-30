@@ -106,6 +106,8 @@ where
         let activator = scope.activator_for(&info.address[..]);
         let mut cap = Some(capability);
 
+        let batch_size = 256;
+
         // define a closure to call repeatedly.
         move |output| {
             // Act only if we retain the capability to send data.
@@ -119,7 +121,7 @@ where
                 while let Some(result) = consumer.poll(std::time::Duration::from_millis(0)) {
                     // Break the while loop to allow for data to
                     // propagate through the dataflow
-                    if iteration >= 512 {
+                    if iteration >= batch_size {
                         break;
                     }
 
